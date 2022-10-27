@@ -5,6 +5,7 @@ import {
   StyleSheet,
   TouchableNativeFeedback,
   TouchableOpacity,
+  Platform,
 } from 'react-native';
 
 interface Props {
@@ -14,37 +15,49 @@ interface Props {
 }
 
 export const Fab = ({title, onPress, position = 'br'}: Props) => {
-  return (
-    <View style={[
-      styles.fabLocation,
-      (position === 'bl')
-        ? styles.left
-        : styles.right,
-      ]}>
 
-      <TouchableNativeFeedback
+  const ios = () => {
+    return (
+      <TouchableOpacity
         onPress={onPress}
-        background={TouchableNativeFeedback.Ripple('#28425B', false, 30)}
+        activeOpacity={0.8}
+        style={[
+          styles.fabLocation,
+          (position === 'bl')
+            ? styles.left
+            : styles.right,
+        ]}
       >
         <View style={styles.fab}>
           <Text style={styles.fabText}>{title}</Text>
         </View>
-      </TouchableNativeFeedback>
+      </TouchableOpacity>
+    );
+  };
 
-    </View>
+  const android = () => {
+    return (
+      <View style={[
+        styles.fabLocation,
+        (position === 'bl')
+          ? styles.left
+          : styles.right,
+        ]}>
 
-    // <TouchableOpacity
-    //   style={[
-    //     styles.fabLocation,
-    //     styles.fab,
-    //     position === 'bl' ? styles.left : styles.right,
-    //   ]}
-    //   onPress={onPress}
-    //   activeOpacity={0.8}
-    // >
-    //   <Text style={styles.fabText}>{title}</Text>
-    // </TouchableOpacity>
-  );
+        <TouchableNativeFeedback
+          onPress={onPress}
+          background={TouchableNativeFeedback.Ripple('#28425B', false, 30)}
+        >
+          <View style={styles.fab}>
+            <Text style={styles.fabText}>{title}</Text>
+          </View>
+        </TouchableNativeFeedback>
+
+      </View>
+    );
+  };
+
+  return ( (Platform.OS === 'ios') ? ios() : android() );
 };
 
 const styles = StyleSheet.create({
@@ -54,7 +67,6 @@ const styles = StyleSheet.create({
 
     // Eliminar si se usa sin el view y con TouchableOpacity
     borderRadius: 100,
-    shadowColor: 'red',
     elevation: 8,
     overflow: 'hidden',
   },

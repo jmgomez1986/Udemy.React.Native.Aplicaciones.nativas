@@ -3,8 +3,9 @@ import { SafeAreaView } from 'react-native';
 // import { HolaMundoScreen } from './src/screens/HolaMundoScreen';
 // import { CounterScreen } from './src/screens/CounterScreen';
 // import { BoxObjectModelScreen } from './src/screens/BoxObjectModelScreen';
-import { DimensionesScreen } from './src/screens/DimensionesScreen';
-import { PositionScreen } from './src/screens/PositionScreen';
+// import { DimensionesScreen } from './src/screens/DimensionesScreen';
+// import { PositionScreen } from './src/screens/PositionScreen';
+import { FlexScreen } from './src/screens/FlexScreen';
 
 export const App = () => {
   return (
@@ -15,7 +16,8 @@ export const App = () => {
       {/* <CounterScreen /> */}
       {/* <BoxObjectModelScreen /> */}
       {/* <DimensionesScreen /> */}
-      <PositionScreen />
+      {/* <PositionScreen /> */}
+      <FlexScreen />
 
     </SafeAreaView>
   );

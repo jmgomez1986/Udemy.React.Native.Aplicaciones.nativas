@@ -9,29 +9,21 @@ export const styles = StyleSheet.create({
   background: {
     flex: 1,
     backgroundColor: 'black',
+    marginBottom: 18,
+    paddingHorizontal: 10,
   },
-  resultado: {
+  result: {
     color: 'white',
     fontSize: 60,
     textAlign: 'right',
   },
-  resultadoChico: {
+  resultSmall: {
     color: 'rgba(255, 255, 255, .5)',
     fontSize: 30,
     textAlign: 'right',
   },
-  button: {
-    width: 80,
-    height: 80,
-    backgroundColor: '#333333',
-    borderRadius: 100,
+  row: {
+    flexDirection: 'row',
     justifyContent: 'center',
-  },
-  buttonText: {
-    textAlign: 'center',
-    padding: 10,
-    fontSize: 30,
-    color: 'white',
-    fontWeight: '400',
   },
 });

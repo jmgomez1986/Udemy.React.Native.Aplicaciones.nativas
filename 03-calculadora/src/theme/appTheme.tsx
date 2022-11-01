@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import {StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
   calculadoraContainer: {
@@ -9,7 +9,6 @@ export const styles = StyleSheet.create({
   background: {
     flex: 1,
     backgroundColor: 'black',
-    marginBottom: 18,
     paddingHorizontal: 10,
   },
   result: {
@@ -25,5 +24,6 @@ export const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     justifyContent: 'center',
+    marginBottom: 18,
   },
 });

@@ -13,7 +13,57 @@ export const CalculadoraScreen = () => {
   };
 
   const buildNumber = (numberText: string) => {
-    setNumero(numero + numberText);
+
+    ///////////////////////////
+    // Validaciones de la clase
+    ///////////////////////////
+
+    // // No aceptar doble "."
+    // if (numero.includes('.') && numberText === '.') {return;}
+
+    // if ( numero.startsWith('0') || numero.startsWith('-0')) {
+
+    //   // Punto decimal
+    //   if (numberText === '.') {
+    //     setNumero(numero + numberText);
+
+    //       // Evaluar si es otro cero y hay un "."
+    //   } else if (numberText === '0' && numero.includes('.')) {
+    //     setNumero(numero + numberText);
+
+    //       // Evaluar si es diferente a "0" y no tiene "."
+    //   } else if (numberText !== '0' && !numero.includes('.')) {
+    //     setNumero(numberText);
+
+    //       // Evitar "0000.0"
+    //   } else if (numberText === '0' && !numero.includes('.')) {
+    //     setNumero(numero);
+    //   } else {
+    //     setNumero(numero + numberText);
+    //   }
+
+    // } else {
+    //   setNumero(numero + numberText);
+    // }
+
+    ///////////////////////////////////////////////////
+    // Validaciones resumidas (Sacado de las preguntas)
+    ///////////////////////////////////////////////////
+    if (numberText === '.' && numero.includes('.')) { return; }
+    setNumero(
+      (numero !== '0' || numberText === '.')
+        ? numero + numberText
+        : numberText
+    );
+
+  };
+
+  const positiveNegative = () => {
+    if (numero.includes('-')) {
+      setNumero(numero.replace('-', ''));
+    } else {
+      setNumero('-' + numero);
+    }
   };
 
   return (
@@ -29,7 +79,7 @@ export const CalculadoraScreen = () => {
       {/* Fila de botones */}
       <View style={styles.row}>
         <ButtonCalc text="C" color="#9B9B9B" action={cleaner} />
-        <ButtonCalc text="+/-" color="#9B9B9B" action={cleaner} />
+        <ButtonCalc text="+/-" color="#9B9B9B" action={positiveNegative} />
         <ButtonCalc text="del" color="#9B9B9B" action={cleaner} />
         <ButtonCalc text="/" color="#FF9427" action={cleaner} />
       </View>

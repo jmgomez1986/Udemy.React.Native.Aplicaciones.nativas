@@ -1,139 +1,21 @@
-import React, {useRef, useState} from 'react';
+import React from 'react';
 import {Text, View} from 'react-native';
 import {ButtonCalc} from '../components/ButtonCalc';
 import {styles} from '../theme/appTheme';
-
-enum Operators {
-  sumar,
-  restar,
-  multiplicar,
-  dividir,
-}
+import { useCalculadora } from '../hooks/useCalculadora';
 
 export const CalculadoraScreen = () => {
-  const [numeroAnterior, setNumeroAnterior] = useState('0');
-  const [numero, setNumero] = useState('0');
-  const lastOperation = useRef<Operators>();
 
-  const cleaner = () => {
-    setNumero('0');
-    setNumeroAnterior('0');
-  };
-
-  const buildNumber = (numberText: string) => {
-    ///////////////////////////
-    // Validaciones de la clase
-    ///////////////////////////
-
-    // // No aceptar doble "."
-    // if (numero.includes('.') && numberText === '.') {return;}
-
-    // if ( numero.startsWith('0') || numero.startsWith('-0')) {
-
-    //   // Punto decimal
-    //   if (numberText === '.') {
-    //     setNumero(numero + numberText);
-
-    //       // Evaluar si es otro cero y hay un "."
-    //   } else if (numberText === '0' && numero.includes('.')) {
-    //     setNumero(numero + numberText);
-
-    //       // Evaluar si es diferente a "0" y no tiene "."
-    //   } else if (numberText !== '0' && !numero.includes('.')) {
-    //     setNumero(numberText);
-
-    //       // Evitar "0000.0"
-    //   } else if (numberText === '0' && !numero.includes('.')) {
-    //     setNumero(numero);
-    //   } else {
-    //     setNumero(numero + numberText);
-    //   }
-
-    // } else {
-    //   setNumero(numero + numberText);
-    // }
-
-    ///////////////////////////////////////////////////
-    // Validaciones resumidas (Sacado de las preguntas)
-    ///////////////////////////////////////////////////
-    if (numberText === '.' && numero.includes('.')) {
-      return;
-    }
-    setNumero(
-      numero !== '0' || numberText === '.' ? numero + numberText : numberText,
-    );
-  };
-
-  const positiveNegative = () => {
-    if (numero.includes('-')) {
-      setNumero(numero.replace('-', ''));
-    } else {
-      setNumero('-' + numero);
-    }
-  };
-
-  const deleteLastEntry = () => {
-    if (
-      numero.length === 1 ||
-      (numero.startsWith('-') && numero.length === 2)
-    ) {
-      setNumero('0');
-    } else {
-      setNumero(numero.slice(0, -1));
-    }
-  };
-
-  const changeNumByLastNum = () => {
-    if (numero.endsWith('.')) {
-      setNumeroAnterior(numero.slice(0, -1));
-    } else {
-      setNumeroAnterior(numero);
-    }
-    setNumero('0');
-  };
-
-  const btnOperation = (operator: string) => {
-    changeNumByLastNum();
-
-    switch (operator) {
-      case '/':
-        lastOperation.current = Operators.dividir;
-        break;
-      case '*':
-        lastOperation.current = Operators.multiplicar;
-        break;
-      case '-':
-        lastOperation.current = Operators.restar;
-        break;
-      case '+':
-        lastOperation.current = Operators.sumar;
-        break;
-    }
-  };
-
-  const calculate = () => {
-    const num1 = Number(numero);
-    const num2 = Number(numeroAnterior);
-
-    switch (lastOperation.current) {
-      case Operators.sumar:
-        setNumero(`${num1 + num2}`);
-        break;
-      case Operators.restar:
-        setNumero(`${num2 - num1}`);
-        break;
-      case Operators.multiplicar:
-        setNumero(`${num1 * num2}`);
-        break;
-        case Operators.dividir:
-          num1 !== 0 && setNumero(`${num2 / num1}`);
-          break;
-      default:
-        break;
-    }
-
-    setNumeroAnterior('0');
-  };
+  const {
+    numeroAnterior,
+    numero,
+    cleaner,
+    buildNumber,
+    positiveNegative,
+    deleteLastEntry,
+    btnOperation,
+    calculate,
+  } = useCalculadora();
 
   return (
     <View style={styles.calculadoraContainer}>

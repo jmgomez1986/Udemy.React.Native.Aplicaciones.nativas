@@ -1,11 +1,19 @@
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {Text, View} from 'react-native';
 import {ButtonCalc} from '../components/ButtonCalc';
 import {styles} from '../theme/appTheme';
 
+enum Operators {
+  sumar,
+  restar,
+  multiplicar,
+  dividir,
+}
+
 export const CalculadoraScreen = () => {
   const [numeroAnterior, setNumeroAnterior] = useState('0');
   const [numero, setNumero] = useState('0');
+  const lastOperation = useRef<Operators>();
 
   const cleaner = () => {
     setNumero('0');
@@ -13,7 +21,6 @@ export const CalculadoraScreen = () => {
   };
 
   const buildNumber = (numberText: string) => {
-
     ///////////////////////////
     // Validaciones de la clase
     ///////////////////////////
@@ -49,13 +56,12 @@ export const CalculadoraScreen = () => {
     ///////////////////////////////////////////////////
     // Validaciones resumidas (Sacado de las preguntas)
     ///////////////////////////////////////////////////
-    if (numberText === '.' && numero.includes('.')) { return; }
+    if (numberText === '.' && numero.includes('.')) {
+      return;
+    }
     setNumero(
-      (numero !== '0' || numberText === '.')
-        ? numero + numberText
-        : numberText
+      numero !== '0' || numberText === '.' ? numero + numberText : numberText,
     );
-
   };
 
   const positiveNegative = () => {
@@ -67,20 +73,52 @@ export const CalculadoraScreen = () => {
   };
 
   const deleteLastEntry = () => {
-    if (numero.length === 1 || (numero.startsWith('-')) && numero.length === 2) {
+    if (
+      numero.length === 1 ||
+      (numero.startsWith('-') && numero.length === 2)
+    ) {
       setNumero('0');
     } else {
       setNumero(numero.slice(0, -1));
     }
   };
 
+  const changeNumByLastNum = () => {
+    if (numero.endsWith('.')) {
+      setNumeroAnterior(numero.slice(0, -1));
+    } else {
+      setNumeroAnterior(numero);
+    }
+    setNumero('0');
+  };
+
+  const btnOperation = (operator: string) => {
+    changeNumByLastNum();
+    console.log(operator);
+
+    switch (operator) {
+      case '/':
+        lastOperation.current = Operators.dividir;
+        break;
+      case '*':
+        lastOperation.current = Operators.multiplicar;
+        break;
+      case '-':
+        lastOperation.current = Operators.restar;
+        break;
+      case '+':
+        lastOperation.current = Operators.sumar;
+        break;
+    }
+  };
+
   return (
     <View style={styles.calculadoraContainer}>
-      <Text style={styles.resultSmall}>{numeroAnterior}</Text>
-      <Text
-        style={styles.result}
-        numberOfLines={1}
-        adjustsFontSizeToFit>
+      {
+        (numeroAnterior !== '0') &&
+        (<Text style={styles.resultSmall}>{numeroAnterior}</Text>)
+      }
+      <Text style={styles.result} numberOfLines={1} adjustsFontSizeToFit>
         {numero}
       </Text>
 
@@ -89,7 +127,7 @@ export const CalculadoraScreen = () => {
         <ButtonCalc text="C" color="#9B9B9B" action={cleaner} />
         <ButtonCalc text="+/-" color="#9B9B9B" action={positiveNegative} />
         <ButtonCalc text="del" color="#9B9B9B" action={deleteLastEntry} />
-        <ButtonCalc text="/" color="#FF9427" action={cleaner} />
+        <ButtonCalc text="/" color="#FF9427" action={btnOperation} />
       </View>
 
       {/* Fila de botones */}
@@ -97,7 +135,7 @@ export const CalculadoraScreen = () => {
         <ButtonCalc text="7" action={buildNumber} />
         <ButtonCalc text="8" action={buildNumber} />
         <ButtonCalc text="9" action={buildNumber} />
-        <ButtonCalc text="X" color="#FF9427" action={cleaner} />
+        <ButtonCalc text="X" color="#FF9427" action={btnOperation} />
       </View>
 
       {/* Fila de botones */}
@@ -105,7 +143,7 @@ export const CalculadoraScreen = () => {
         <ButtonCalc text="4" action={buildNumber} />
         <ButtonCalc text="5" action={buildNumber} />
         <ButtonCalc text="6" action={buildNumber} />
-        <ButtonCalc text="-" color="#FF9427" action={cleaner} />
+        <ButtonCalc text="-" color="#FF9427" action={btnOperation} />
       </View>
 
       {/* Fila de botones */}
@@ -113,7 +151,7 @@ export const CalculadoraScreen = () => {
         <ButtonCalc text="1" action={buildNumber} />
         <ButtonCalc text="2" action={buildNumber} />
         <ButtonCalc text="3" action={buildNumber} />
-        <ButtonCalc text="+" color="#FF9427" action={cleaner} />
+        <ButtonCalc text="+" color="#FF9427" action={btnOperation} />
       </View>
 
       {/* Fila de botones */}

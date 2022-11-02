@@ -94,7 +94,6 @@ export const CalculadoraScreen = () => {
 
   const btnOperation = (operator: string) => {
     changeNumByLastNum();
-    console.log(operator);
 
     switch (operator) {
       case '/':
@@ -112,12 +111,35 @@ export const CalculadoraScreen = () => {
     }
   };
 
+  const calculate = () => {
+    const num1 = Number(numero);
+    const num2 = Number(numeroAnterior);
+
+    switch (lastOperation.current) {
+      case Operators.sumar:
+        setNumero(`${num1 + num2}`);
+        break;
+      case Operators.restar:
+        setNumero(`${num2 - num1}`);
+        break;
+      case Operators.multiplicar:
+        setNumero(`${num1 * num2}`);
+        break;
+        case Operators.dividir:
+          num1 !== 0 && setNumero(`${num2 / num1}`);
+          break;
+      default:
+        break;
+    }
+
+    setNumeroAnterior('0');
+  };
+
   return (
     <View style={styles.calculadoraContainer}>
-      {
-        (numeroAnterior !== '0') &&
-        (<Text style={styles.resultSmall}>{numeroAnterior}</Text>)
-      }
+      {numeroAnterior !== '0' && (
+        <Text style={styles.resultSmall}>{numeroAnterior}</Text>
+      )}
       <Text style={styles.result} numberOfLines={1} adjustsFontSizeToFit>
         {numero}
       </Text>
@@ -135,7 +157,7 @@ export const CalculadoraScreen = () => {
         <ButtonCalc text="7" action={buildNumber} />
         <ButtonCalc text="8" action={buildNumber} />
         <ButtonCalc text="9" action={buildNumber} />
-        <ButtonCalc text="X" color="#FF9427" action={btnOperation} />
+        <ButtonCalc text="x" color="#FF9427" action={btnOperation} />
       </View>
 
       {/* Fila de botones */}
@@ -158,7 +180,7 @@ export const CalculadoraScreen = () => {
       <View style={styles.row}>
         <ButtonCalc text="0" btnWide action={buildNumber} />
         <ButtonCalc text="." action={buildNumber} />
-        <ButtonCalc text="=" color="#FF9427" action={cleaner} />
+        <ButtonCalc text="=" color="#FF9427" action={calculate} />
       </View>
     </View>
   );

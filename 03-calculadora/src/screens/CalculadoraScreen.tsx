@@ -66,6 +66,14 @@ export const CalculadoraScreen = () => {
     }
   };
 
+  const deleteLastEntry = () => {
+    if (numero.length === 1 || (numero.startsWith('-')) && numero.length === 2) {
+      setNumero('0');
+    } else {
+      setNumero(numero.slice(0, -1));
+    }
+  };
+
   return (
     <View style={styles.calculadoraContainer}>
       <Text style={styles.resultSmall}>{numeroAnterior}</Text>
@@ -80,7 +88,7 @@ export const CalculadoraScreen = () => {
       <View style={styles.row}>
         <ButtonCalc text="C" color="#9B9B9B" action={cleaner} />
         <ButtonCalc text="+/-" color="#9B9B9B" action={positiveNegative} />
-        <ButtonCalc text="del" color="#9B9B9B" action={cleaner} />
+        <ButtonCalc text="del" color="#9B9B9B" action={deleteLastEntry} />
         <ButtonCalc text="/" color="#FF9427" action={cleaner} />
       </View>
 

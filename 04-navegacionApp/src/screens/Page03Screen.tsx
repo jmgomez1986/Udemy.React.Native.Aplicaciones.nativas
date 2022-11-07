@@ -8,7 +8,7 @@ interface Props extends StackScreenProps<any, any> {}
 export const Page03Screen = ({navigation}: Props) => {
   return (
     <View style={styles.globalMargin}>
-      <Text>Page03Screen</Text>
+      <Text style={styles.title}>Page03Screen</Text>
 
       <Button
         title="Previous Page"

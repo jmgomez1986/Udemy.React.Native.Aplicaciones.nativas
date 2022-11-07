@@ -8,10 +8,32 @@ const Stack = createStackNavigator();
 
 export const StackNavigator = () => {
   return (
-    <Stack.Navigator>
-      <Stack.Screen name="Page01Screen" component={Page01Screen} />
-      <Stack.Screen name="Page02Screen" component={Page02Screen} />
-      <Stack.Screen name="Page03Screen" component={Page03Screen} />
+    <Stack.Navigator
+      // initialRouteName="Page02Screen"
+      screenOptions={{
+        headerStyle: {
+          elevation: 0, // Android
+          shadowColor: 'transparent', // IOS
+        },
+        cardStyle: {
+          backgroundColor: 'white',
+        },
+      }}>
+      <Stack.Screen
+        name="Page01Screen"
+        options={{title: 'Page 01'}}
+        component={Page01Screen}
+      />
+      <Stack.Screen
+        name="Page02Screen"
+        options={{title: 'Page 02'}}
+        component={Page02Screen}
+      />
+      <Stack.Screen
+        name="Page03Screen"
+        options={{title: 'Page 03'}}
+        component={Page03Screen}
+      />
     </Stack.Navigator>
   );
 };

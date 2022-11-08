@@ -3,6 +3,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {Page01Screen} from '../screens/Page01Screen';
 import {Page02Screen} from '../screens/Page02Screen';
 import {Page03Screen} from '../screens/Page03Screen';
+import {PersonScreen} from '../screens/PersonScreen';
 
 const Stack = createStackNavigator();
 
@@ -23,6 +24,11 @@ export const StackNavigator = () => {
         name="Page01Screen"
         options={{title: 'Page 01'}}
         component={Page01Screen}
+      />
+      <Stack.Screen
+        name="PersonScreen"
+        options={{title: 'Person'}}
+        component={PersonScreen}
       />
       <Stack.Screen
         name="Page02Screen"

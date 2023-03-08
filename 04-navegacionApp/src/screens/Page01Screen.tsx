@@ -29,7 +29,12 @@ export const Page01Screen = ({navigation}: Props) => {
         onPress={() => navigation.navigate('Page02Screen')}
       />
 
-      <Text style={styles.title}>Navigate with Params</Text>
+      <Text style={{
+          ...styles.title,
+          marginVertical: 20,
+        }}>
+          Navigate with Params
+      </Text>
 
       <View style={{flexDirection: 'row'}}>
         <TouchableOpacity

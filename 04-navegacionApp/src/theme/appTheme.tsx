@@ -6,7 +6,6 @@ export const styles = StyleSheet.create({
   },
   title: {
     fontSize: 30,
-    marginBottom: 10,
   },
   btnBig: {
     width: 100,

@@ -5,7 +5,6 @@ import {
 } from '@react-navigation/drawer';
 import React from 'react';
 import {SettingsScreen} from '../screens/SettingsScreen';
-import {StackNavigator} from './StackNavigator';
 import {
   Text,
   View,

@@ -1,10 +1,10 @@
 import { DrawerScreenProps } from '@react-navigation/drawer';
-// import {StackScreenProps} from '@react-navigation/stack';
+
 import React, { useEffect } from 'react';
 import {Button, Text, View, TouchableOpacity} from 'react-native';
-import {styles} from '../theme/appTheme';
+import Icon from 'react-native-vector-icons/Ionicons';
+import { styles, colours } from '../theme/appTheme';
 
-// interface Props extends StackScreenProps<any, any> {}
 interface Props extends DrawerScreenProps<any, any> {}
 
 export const Page01Screen = ({navigation}: Props) => {
@@ -12,13 +12,16 @@ export const Page01Screen = ({navigation}: Props) => {
   useEffect(() => {
     navigation.setOptions({
       headerLeft: () => (
-        <Button
-          title="Menú"
-          onPress={() => {navigation.toggleDrawer();}}
-        />
+        <TouchableOpacity
+          style={{
+            marginLeft: 10,
+          }}
+          onPress={() => navigation.toggleDrawer()}>
+          <Icon name="menu-outline" color={colours.primary} size={35} />
+        </TouchableOpacity>
       ),
     });
-  });
+  }, [navigation]);
 
   return (
     <View style={styles.globalMargin}>
@@ -48,6 +51,7 @@ export const Page01Screen = ({navigation}: Props) => {
               name: 'Matias',
             })
           }>
+          <Icon name="body-outline" color="white" size={35} />
           <Text style={styles.btnBigText}>Matias</Text>
         </TouchableOpacity>
 
@@ -59,10 +63,12 @@ export const Page01Screen = ({navigation}: Props) => {
           onPress={() =>
             navigation.navigate('PersonScreen', {
               id: 2,
-              name: 'Juan',
+              name: 'María',
             })
           }>
-          <Text style={styles.btnBigText}>Juan</Text>
+
+          <Icon name="woman-outline" color="white" size={35} />
+          <Text style={styles.btnBigText}>María</Text>
         </TouchableOpacity>
       </View>
     </View>

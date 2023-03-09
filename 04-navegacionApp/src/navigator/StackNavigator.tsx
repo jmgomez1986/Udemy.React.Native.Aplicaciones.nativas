@@ -4,6 +4,7 @@ import {Page01Screen} from '../screens/Page01Screen';
 import {Page02Screen} from '../screens/Page02Screen';
 import {Page03Screen} from '../screens/Page03Screen';
 import {PersonScreen} from '../screens/PersonScreen';
+import { styles } from '../../../03-calculadora/src/theme/appTheme';
 
 export type RootStackParams = {
   Page01Screen: undefined;

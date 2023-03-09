@@ -1,10 +1,10 @@
 import React from 'react';
-import { Text } from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { ChatScreen } from '../screens/ChatScreen';
 import { ContactsScreen } from '../screens/ContactsScreen';
-import { AlbumScreen } from '../screens/AlbumScreen';
+import { AlbumsScreen } from '../screens/AlbumsScreen';
 import { colours } from '../theme/appTheme';
 
 const Tab = createMaterialTopTabNavigator();
@@ -37,23 +37,24 @@ export const TopTabNavigator = () => {
             let iconName: string = '';
             switch (route.name) {
               case 'Chat':
-                iconName = 'Ch';
+                iconName = 'chatbox-ellipses-outline';
                 break;
               case 'Contacts':
-                iconName = 'Co';
+                iconName = 'people-outline';
                 break;
-              case 'Album':
-                iconName = 'Al';
+              case 'Albums':
+                iconName = 'albums-outline';
                 break;
             }
-            return <Text style={{color}}>{iconName}</Text>;
+
+            return <Icon name={iconName} size={20} color={color} />;
           },
         })
       }
     >
       <Tab.Screen name="Chat" component={ChatScreen} />
       <Tab.Screen name="Contacts" component={ContactsScreen} />
-      <Tab.Screen name="Album" component={AlbumScreen} />
+      <Tab.Screen name="Albums" component={AlbumsScreen} />
     </Tab.Navigator>
   );
 };

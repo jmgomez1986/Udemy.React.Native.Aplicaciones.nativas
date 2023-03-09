@@ -32,7 +32,7 @@ const TabsIOS = () => {
         tabBarLabelStyle: {
           fontSize: 15,
         },
-        tabBarIcon: ({color, focused, size}) => {
+        tabBarIcon: ({color}) => {
           let iconName: string = '';
           switch (route.name) {
             case 'Tab1Screen':

@@ -1,7 +1,8 @@
-import {AuthState} from './AuthContext';
+import { AuthState, authInitialState } from './AuthContext';
 
 type AuthAction =
   | { type: 'signIn' }
+  | { type: 'logout' }
   | { type: 'changeFavIcon', payload: string };
 
 export const authReducer = (
@@ -14,6 +15,13 @@ export const authReducer = (
         ...state,
         isLoggedIn: true,
         username: 'no-username-yet',
+      };
+    case 'logout':
+      return {
+        ...state,
+        isLoggedIn: false,
+        username: undefined,
+        favouriteIcon: undefined,
       };
     case 'changeFavIcon':
       return {

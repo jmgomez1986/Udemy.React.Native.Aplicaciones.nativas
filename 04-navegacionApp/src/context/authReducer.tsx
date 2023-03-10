@@ -1,10 +1,13 @@
-import { AuthState } from "./AuthContext";
+import {AuthState} from './AuthContext';
 
 type AuthAction = {
-  type: 'signIn',
-}
+  type: 'signIn';
+};
 
-export const authReducer = (state: AuthState, action: AuthAction): AuthState => {
+export const authReducer = (
+  state: AuthState,
+  action: AuthAction,
+): AuthState => {
   switch (action.type) {
     case 'signIn':
       return {
@@ -15,4 +18,4 @@ export const authReducer = (state: AuthState, action: AuthAction): AuthState => 
     default:
       return state;
   }
-}
+};

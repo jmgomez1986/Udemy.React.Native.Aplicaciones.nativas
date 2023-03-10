@@ -1,6 +1,6 @@
 import React, { createContext } from 'react';
 import { useReducer } from 'react';
-import { authReducer } from './AuthReducer';
+import { authReducer } from './authReducer';
 
 // Definir como luce. Que informacion tendre aqui
 export interface AuthState {

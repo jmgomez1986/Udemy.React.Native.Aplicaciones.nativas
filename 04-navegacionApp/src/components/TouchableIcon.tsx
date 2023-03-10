@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { AuthContext } from '../context/AuthContext';
 import { colours } from '../theme/appTheme';
 
 interface Props {
@@ -8,9 +9,12 @@ interface Props {
 }
 
 export const TouchableIcon = ({iconName}: Props) => {
+
+  const {changeFavIcon} = useContext(AuthContext);
+
   return (
     <TouchableOpacity
-      onPress={() => console.log(iconName)}
+      onPress={() => changeFavIcon(iconName)}
     >
       <Icon
         name={iconName}

@@ -2,7 +2,14 @@ import {StyleSheet} from 'react-native';
 
 export const DefaultTheme = {
   colors: {
-    secondaryContainer: 'transparent',
+    primary: 'rgb(0, 104, 116)',
+    onPrimary: 'rgb(255, 255, 255)',
+    primaryContainer: 'rgb(151, 240, 255)',
+    onPrimaryContainer: 'rgb(0, 31, 36)',
+    secondary: 'rgb(74, 98, 103)',
+    onSecondary: 'rgb(255, 255, 255)',
+    secondaryContainer: 'rgb(88, 86, 214)',
+    onSecondaryContainer: 'rgb(5, 31, 35)',
   },
 };
 

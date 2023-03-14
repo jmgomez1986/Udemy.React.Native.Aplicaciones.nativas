@@ -12,6 +12,7 @@ module.exports = {
         'no-shadow': 'off',
         'no-undef': 'off',
         'prettier/prettier': 'off',
+        'react-native/no-inline-styles': 'off',
       },
     },
   ],

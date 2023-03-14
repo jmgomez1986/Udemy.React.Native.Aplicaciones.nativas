@@ -2,7 +2,6 @@ import React from 'react';
 import { Image, View, StyleSheet } from 'react-native';
 import { Movie } from '../interfaces/movieInterface';
 
-
 interface Props {
   movie: Movie
 }

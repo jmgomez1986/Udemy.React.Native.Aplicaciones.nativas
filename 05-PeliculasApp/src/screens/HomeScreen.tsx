@@ -2,6 +2,7 @@ import React from 'react';
 import { ActivityIndicator, View, Dimensions, Text, FlatList, ScrollView } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Carousel from 'react-native-snap-carousel';
+import { HorizontalSlider } from '../components/HorizontalSlider';
 import { MoviePoster } from '../components/MoviePoster';
 import { useMovies } from '../hooks/useMovies';
 
@@ -34,25 +35,11 @@ export const HomeScreen = () => {
             renderItem={({item}) => <MoviePoster movie={item} />}
             sliderWidth={windowWidth}
             itemWidth={300}
+            inactiveSlideOpacity={0.9}
           />
         </View>
 
-        <View style={{backgroundColor: 'red', height: 270}}>
-
-          <Text style={{fontSize: 30, fontWeight: 'bold', marginBottom: 10}}>
-            En Cartelera
-          </Text>
-
-          <FlatList
-            data={moviesInCinema}
-            renderItem={({item}) =>
-              <MoviePoster movie={item} width={140} height={200} />}
-            keyExtractor={(item) => item.id.toString()}
-            horizontal={true}
-            showsHorizontalScrollIndicator={false}
-          />
-
-        </View>
+        <HorizontalSlider title="En Cartelera" movies={moviesInCinema} />
 
       </View>
 

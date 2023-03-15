@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/core';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React from 'react';
-import { Image, View, StyleSheet, TouchableOpacity } from 'react-native';
+import { Image, View, TouchableOpacity, StyleSheet } from 'react-native';
 import { Movie } from '../interfaces/movieInterface';
 import { RootStackParams } from '../navigation/Navigation';
 interface Props {
@@ -23,7 +23,9 @@ export const MoviePoster = ({ movie, width = 300, height = 420 }: Props) => {
       style={{
         width,
         height,
-        marginHorizontal: 8,
+        marginHorizontal: 2,
+        paddingBottom: 20,
+        paddingHorizontal: 7,
       }}
     >
       <View style={ styles.imageContainer}>

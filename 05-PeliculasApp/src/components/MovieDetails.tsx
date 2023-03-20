@@ -3,6 +3,7 @@ import { StyleSheet, View, Text } from 'react-native';
 import { MovieFull } from '../interfaces/movieInterface';
 import { Cast } from '../interfaces/CreditsInterface';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { CastItem } from './CastItem';
 
 interface Props {
   movieFull: MovieFull;
@@ -32,14 +33,19 @@ export const MovieDetails = ({ movieFull, cast }: Props) => {
         <Text style={{fontSize: 16, marginTop: 3}}>{movieFull.overview}</Text>
         {/* Presupuesto */}
         <Text style={{fontSize: 23, fontWeight: 'bold', marginTop: 10}}>
-        Presupuesto
+          Presupuesto
         </Text>
         <Text style={{fontSize: 16, marginTop: 3}}>{format(movieFull.budget)}</Text>
 
       </View>
 
       {/* Casting */}
-
+      <View style={{marginTop: 10, marginBottom: 100}}>
+        <Text style={{fontSize: 23, fontWeight: 'bold', marginTop: 10, marginHorizontal: 20}}>
+          Actores
+        </Text>
+        <CastItem actor={cast[0]} />
+      </View>
     </>
   );
 };

@@ -10,7 +10,9 @@ interface Props {
 }
 
 export const MovieDetails = ({ movieFull, cast }: Props) => {
-  console.log(movieFull.genres);
+
+  const { format } = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' });
+
   return (
     <>
       {/* Detalles */}
@@ -18,18 +20,22 @@ export const MovieDetails = ({ movieFull, cast }: Props) => {
         <View style={{flexDirection: 'row'}}>
           <Icon name="star-outline" size={20} color="grey" />
           <Text>  { movieFull.vote_average }</Text>
-
           <Text style={{marginLeft: 8}}>
             - { movieFull.genres.map((genre) => genre.name).join(', ')}
           </Text>
-
-          {/* {
-            movieFull.genres.map((genre) => (
-              <Text>  {genre.name}, </Text>
-            ))
-          } */}
-
         </View>
+
+        {/* Descripcion */}
+        <Text style={{fontSize: 23, fontWeight: 'bold', marginTop: 10}}>
+          Descripción
+        </Text>
+        <Text style={{fontSize: 16, marginTop: 3}}>{movieFull.overview}</Text>
+        {/* Presupuesto */}
+        <Text style={{fontSize: 23, fontWeight: 'bold', marginTop: 10}}>
+        Presupuesto
+        </Text>
+        <Text style={{fontSize: 16, marginTop: 3}}>{format(movieFull.budget)}</Text>
+
       </View>
 
       {/* Casting */}

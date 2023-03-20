@@ -11,11 +11,9 @@ export const CastItem = ({ actor }: Props) => {
 
   return (
     <View style={styles.container}>
-
-      <Image
-        source={{uri}}
-        style={styles.actorImage}
-      />
+      {actor.profile_path && (
+        <Image source={{ uri }} style={styles.actorImage} />
+      )}
       <View style={styles.actorInfo}>
         <Text style={styles.actorName}>{actor.name}</Text>
         <Text style={styles.actorCharacter}>{actor.character}</Text>
@@ -29,6 +27,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: 'white',
     borderRadius: 15,
+    marginHorizontal: 20,
+    padding: 5,
+    height: 60,
 
     shadowColor: '#000',
     shadowOffset: {

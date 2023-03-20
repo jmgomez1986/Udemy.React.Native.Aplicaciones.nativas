@@ -1,10 +1,9 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { View, Text, FlatList } from 'react-native';
 import { MovieFull } from '../interfaces/movieInterface';
 import { Cast } from '../interfaces/CreditsInterface';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { CastItem } from './CastItem';
-
 interface Props {
   movieFull: MovieFull;
   cast: Cast[];
@@ -44,10 +43,18 @@ export const MovieDetails = ({ movieFull, cast }: Props) => {
         <Text style={{fontSize: 23, fontWeight: 'bold', marginTop: 10, marginHorizontal: 20}}>
           Actores
         </Text>
-        <CastItem actor={cast[0]} />
+
+        <FlatList
+          data={cast}
+          renderItem={({ item }) => (
+            <CastItem actor={item} />
+          )}
+          keyExtractor={item => item.id.toString()}
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          style={{marginTop: 10, height: 80}}
+        />
       </View>
     </>
   );
 };
-
-const styles = StyleSheet.create({});

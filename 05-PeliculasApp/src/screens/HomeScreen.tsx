@@ -6,7 +6,7 @@ import { HorizontalSlider } from '../components/HorizontalSlider';
 import { MoviePoster } from '../components/MoviePoster';
 import { useMovies } from '../hooks/useMovies';
 import { GradientBackground } from '../components/GradientBackground';
-import { getImageColours } from '../helpers/getColours';
+import { getImageColors } from '../helpers/getColors';
 
 const { width: windowWidth } = Dimensions.get('window');
 
@@ -17,7 +17,7 @@ export const HomeScreen = () => {
     const movie = nowPlaying[index];
     const uri = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
 
-    const [ primary, secondary ] = await getImageColours(uri);
+    const [ primary, secondary ] = await getImageColors(uri);
 
     console.log({primary, secondary});
   };

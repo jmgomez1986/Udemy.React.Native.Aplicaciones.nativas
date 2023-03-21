@@ -2,11 +2,11 @@ import React from 'react';
 import { ActivityIndicator, View, Dimensions, ScrollView } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Carousel from 'react-native-snap-carousel';
-import ImageColors from 'react-native-image-colors';
 import { HorizontalSlider } from '../components/HorizontalSlider';
 import { MoviePoster } from '../components/MoviePoster';
 import { useMovies } from '../hooks/useMovies';
 import { GradientBackground } from '../components/GradientBackground';
+import { getImageColours } from '../helpers/getColours';
 
 const { width: windowWidth } = Dimensions.get('window');
 
@@ -17,10 +17,9 @@ export const HomeScreen = () => {
     const movie = nowPlaying[index];
     const uri = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
 
-    const colours = await ImageColors.getColors(uri, {});
+    const [ primary, secondary ] = await getImageColours(uri);
 
-    console.log(uri);
-    console.log(colours);
+    console.log({primary, secondary});
   };
 
   if (isLoading) {

@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, { useContext, useEffect } from 'react';
 import { ActivityIndicator, View, Dimensions, ScrollView } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Carousel from 'react-native-snap-carousel';
@@ -8,23 +8,26 @@ import { useMovies } from '../hooks/useMovies';
 import { GradientBackground } from '../components/GradientBackground';
 import { getImageColors } from '../helpers/getColors';
 import { GradientContext } from '../context/GradienContext';
-
 const { width: windowWidth } = Dimensions.get('window');
 
 export const HomeScreen = () => {
   const { nowPlaying, popular, topRated, upcoming, isLoading } = useMovies();
   const { top: marginTop } = useSafeAreaInsets();
-  const {setMainColors, setPrevMainColors} = useContext(GradientContext);
+  const { setMainColors } = useContext(GradientContext);
   const getPosterColours = async (index: number) => {
     const movie = nowPlaying[index];
     const uri = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
 
-    const [ primary = 'green', secondary = 'orange' ] = await getImageColors(uri);
+    const [primary = 'green', secondary = 'orange'] = await getImageColors(uri);
 
-    console.log({primary, secondary});
-
-    setMainColors({primary, secondary});
+    setMainColors({ primary, secondary });
   };
+
+  useEffect(() => {
+    if (nowPlaying.length > 0) {
+      getPosterColours(0);
+    }
+  }, [nowPlaying]);
 
   if (isLoading) {
     return (

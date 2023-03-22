@@ -3,7 +3,7 @@ import { createContext, useState } from 'react';
 
 interface ImageColors {
   primary: string;
-  secundary: string;
+  secondary: string;
 }
 
 interface ContextProps {
@@ -16,13 +16,13 @@ export const GradientContext = createContext({} as ContextProps);
 
 export const GradientProvider = ({ children }: any) => {
   const [colors, setColors] = useState<ImageColors>({
-    primary: 'transparent',
-    secundary: 'transparent',
+    primary: 'red',
+    secondary: 'blue',
   });
 
   const [prevColors, setPrevColors] = useState<ImageColors>({
     primary: 'transparent',
-    secundary: 'transparent',
+    secondary: 'transparent',
   });
 
   const setMainColors = (mainColors: ImageColors) => {

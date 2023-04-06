@@ -1,10 +1,8 @@
 import React, { useRef } from 'react';
 import { Animated, PanResponder, StyleSheet, View } from 'react-native';
-import { useAnimation } from '../hooks/useAnimation';
 
 export const Animation102Screen = () => {
-  const { opacity, position, fadeIn, fadeOut, startMovingPosition } =
-    useAnimation();
+
   const pan = useRef(new Animated.ValueXY()).current;
 
   const panResponder = PanResponder.create({

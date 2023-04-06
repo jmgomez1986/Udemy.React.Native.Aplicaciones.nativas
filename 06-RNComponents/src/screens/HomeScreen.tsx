@@ -6,34 +6,10 @@ import { styles } from '../theme/appTheme';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { MenuItem } from '../interfaces/appInterfaces';
 import { FlatListMenuItem } from '../components/FlatListMenuItem';
-
-const menuItems: MenuItem[] = [
-  {
-    name: 'Animation 101',
-    icon: 'cube-outline',
-    component: 'Animation101Screen',
-  },
-  {
-    name: 'Animation 102',
-    icon: 'albums-outline',
-    component: 'Animation102Screen',
-  },
-];
+import { menuItems } from '../data/menuItems';
 
 export const HomeScreen = () => {
   const {top} = useSafeAreaInsets();
-  const renderMenuItem = (menuItem: MenuItem) => {
-    return (
-      <View style={{flexDirection: 'row', alignItems: 'center'}}>
-        <Text>{menuItem.name}</Text>
-        <Icon
-          name={menuItem.icon}
-          size={60}
-          color="black" />
-      </View>
-    );
-  };
-
   const renderMenuHeader = () => {
     return (
       <View style={{ marginTop: top + 20, marginBottom: 20 }}>

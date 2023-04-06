@@ -10,7 +10,7 @@ export const Animation101Screen = () => {
     <View style={styles.container}>
       <Animated.View
         style={{
-          ...styles.purpleBox,
+          ...styles.box,
           marginBottom: 20,
           opacity,
           transform: [{
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  purpleBox: {
+  box: {
     width: 150,
     height: 150,
     backgroundColor: '#5856D6',

@@ -1,23 +1,12 @@
 import React from 'react';
-import { Text, View } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import { View } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import { styles } from '../theme/appTheme';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { MenuItem } from '../interfaces/appInterfaces';
 import { FlatListMenuItem } from '../components/FlatListMenuItem';
 import { menuItems } from '../data/menuItems';
+import { HeaderTitle } from '../components/HeaderTitle';
 
 export const HomeScreen = () => {
-  const {top} = useSafeAreaInsets();
-  const renderMenuHeader = () => {
-    return (
-      <View style={{ marginTop: top + 20, marginBottom: 20 }}>
-        <Text style={styles.title}>Opciones del Menu</Text>
-      </View>
-    );
-  };
-
   const itemSeparator = () => {
     return (
       <View style={{
@@ -34,7 +23,7 @@ export const HomeScreen = () => {
         data={menuItems}
         renderItem={({item}) => <FlatListMenuItem menuItem={item}/>}
         keyExtractor={(item) => item.name}
-        ListHeaderComponent={() => renderMenuHeader()}
+        ListHeaderComponent={() => <HeaderTitle title="Opciones de Menu" />}
         ItemSeparatorComponent={() => itemSeparator()}
       />
     </View>

@@ -29,14 +29,21 @@ export const SwitchScreen = () => {
   return (
     <View style={styles.container}>
 
-      <View>
-        <HeaderTitle title="Switches" />
-      </View>
+      <HeaderTitle title="Switches" />
 
       <View style={styles.swithRow}>
         <Text style={styles.swithText}>isActive</Text>
-
         <CustomSwitch isOn={ isActive } onChange={(value) => onChange(value, 'isActive')}/>
+      </View>
+
+      <View style={styles.swithRow}>
+        <Text style={styles.swithText}>isHungry</Text>
+        <CustomSwitch isOn={ isHungry } onChange={(value) => onChange(value, 'isHungry')}/>
+      </View>
+
+      <View style={styles.swithRow}>
+        <Text style={styles.swithText}>isHappy</Text>
+        <CustomSwitch isOn={ isHappy } onChange={(value) => onChange(value, 'isHappy')}/>
       </View>
 
       <Text style={styles.swithText}>
@@ -55,7 +62,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 20,
+    marginVertical: 20,
   },
   swithText: {
     fontSize: 25,

@@ -1,75 +1,61 @@
-import React, { useState } from 'react';
-import { Keyboard, KeyboardAvoidingView, Platform, StyleSheet, TextInput, TouchableWithoutFeedback, View } from 'react-native';
+import React from 'react';
+import { StyleSheet, Text, TextInput, View } from 'react-native';
 import { styles } from '../theme/appTheme';
 import { HeaderTitle } from '../components/HeaderTitle';
 import { ScrollView } from 'react-native-gesture-handler';
-interface Form {
-  name: string,
-  email: string,
-  phone: string,
-}
+import { useForm } from '../hooks/useForm';
+import { CustomSwitch } from '../components/CustomSwitch';
 
 export const TextInputScreen = () => {
 
-  const [form, setForm] = useState<Form>({
+  const { form, isSubscribed, onChange } = useForm({
     name: '',
     email: '',
     phone: '',
-  });
-
-  const onChange = (value: string, field: keyof Form) => {
-    setForm({
-      ...form,
-      [field]: value,
-    });
-  };
+    isSubscribed: false,
+	});
 
   return (
+    <ScrollView>
 
-     <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+      <View style={styles.globalMargin}>
 
-      <ScrollView>
+        <HeaderTitle title="Text Input" />
 
-        {/* <TouchableWithoutFeedback onPress={Keyboard.dismiss}>  */}
+        <TextInput
+          style={stylesTextInput.inputStyle}
+          placeholder="Ingrese su nombre"
+          autoCorrect={false}
+          autoCapitalize="words"
+          onChangeText={(value) => onChange(value, 'name')}
+        />
 
-          <View style={styles.globalMargin}>
+        <TextInput
+          style={stylesTextInput.inputStyle}
+          placeholder="Ingrese su email"
+          autoCorrect={false}
+          autoCapitalize="none"
+          onChangeText={(value) => onChange(value, 'email')}
+          keyboardType="email-address"
+        />
 
-            <HeaderTitle title="Text Input" />
+        <View style={styles.swithRow}>
+          <Text style={styles.swithText}>Suscribirse</Text>
+          <CustomSwitch isOn={ isSubscribed } onChange={(value) => onChange(value, 'isSubscribed')}/>
+        </View>
 
-            <TextInput
-              style={stylesTextInput.inputStyle}
-              placeholder="Ingrese su nombre"
-              autoCorrect={false}
-              autoCapitalize="words"
-              onChangeText={(value) => onChange(value, 'name')}
-            />
+        <TextInput
+          style={stylesTextInput.inputStyle}
+          placeholder="Ingrese su teléfono"
+          onChangeText={(value) => onChange(value, 'phone')}
+          keyboardType="phone-pad"
+        />
 
-            <TextInput
-              style={stylesTextInput.inputStyle}
-              placeholder="Ingrese su email"
-              autoCorrect={false}
-              autoCapitalize="none"
-              onChangeText={(value) => onChange(value, 'email')}
-              keyboardType="email-address"
-            />
+        <HeaderTitle title={JSON.stringify(form, null, 3)} />
 
-            <HeaderTitle title={JSON.stringify(form, null, 3)} />
-            <HeaderTitle title={JSON.stringify(form, null, 3)} />
+      </View>
 
-            <TextInput
-              style={stylesTextInput.inputStyle}
-              placeholder="Ingrese su teléfono"
-              onChangeText={(value) => onChange(value, 'phone')}
-              keyboardType="phone-pad"
-            />
-
-          </View>
-
-        {/* </TouchableWithoutFeedback> */}
-
-      </ScrollView>
-
-     </KeyboardAvoidingView>
+    </ScrollView>
 
   );
 };

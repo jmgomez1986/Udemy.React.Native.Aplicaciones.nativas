@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import { HeaderTitle } from '../components/HeaderTitle';
 import { CustomSwitch } from '../components/CustomSwitch';
+import { styles } from '../theme/appTheme';
 
 interface State {
   isActive: boolean,
@@ -27,7 +28,7 @@ export const SwitchScreen = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={{marginHorizontal: 20}}>
 
       <HeaderTitle title="Switches" />
 
@@ -53,18 +54,3 @@ export const SwitchScreen = () => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    marginHorizontal: 20,
-  },
-  swithRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginVertical: 20,
-  },
-  swithText: {
-    fontSize: 25,
-  },
-});

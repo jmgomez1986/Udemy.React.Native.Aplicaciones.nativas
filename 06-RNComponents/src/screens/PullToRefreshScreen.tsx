@@ -6,12 +6,14 @@ import { styles } from '../theme/appTheme';
 export const PullToRefreshScreen = () => {
 
   const [refreshing, setRefreshing] = useState(false);
+  const [data, setData] = useState<string>();
   const onRefresh = () => {
     setRefreshing(true);
     setTimeout(() => {
       console.log('Finished');
       setRefreshing(false);
-    }, 1500);
+      setData('Hola Mundo!!!');
+    }, 3500);
   };
 
   return (
@@ -21,12 +23,21 @@ export const PullToRefreshScreen = () => {
         <RefreshControl
           refreshing={refreshing}
           onRefresh={onRefresh}
+          progressViewOffset={50}
+          progressBackgroundColor={'#5856D6'} // Android - IOS???
+          colors={['white', 'red', 'blue', 'orange']} // Android
+          style={{backgroundColor: '#5856D6'}} // IOS
+          tintColor="white" // IOS
+          title="Refreshing" // IOS
         />
       }
     >
 
       <View style={styles.globalMargin}>
         <HeaderTitle title="Pull to Refresh" />
+        {
+          data && <HeaderTitle title={data} />
+        }
       </View>
 
     </ScrollView>

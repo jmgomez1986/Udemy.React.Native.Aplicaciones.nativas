@@ -1,7 +1,6 @@
 import React from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { StyleSheet } from 'react-native';
 import { MenuItem } from '../interfaces/appInterfaces';
 import { useNavigation } from '@react-navigation/core';
 interface Props {

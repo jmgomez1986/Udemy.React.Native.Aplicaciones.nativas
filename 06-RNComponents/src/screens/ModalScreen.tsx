@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Modal, Text, View } from 'react-native';
 import { HeaderTitle } from '../components/HeaderTitle';
-import { useState } from 'react';
+
 import { styles } from '../theme/appTheme';
 
 export const ModalScreen = () => {
@@ -25,20 +25,37 @@ export const ModalScreen = () => {
 
         <View style={{
           flex: 1,
-          // height: 100,
-          // width: 100,
-          backgroundColor: 'rgba(0,0,0,0.2)',
+          backgroundColor: 'rgba(0,0,0,0.3)',
+          justifyContent: 'center',
+          alignItems: 'center',
         }}>
 
           <View style={{
+            width: 200,
+            height: 200,
             backgroundColor: 'white',
+            justifyContent: 'center',
+            alignItems: 'center',
+            shadowOffset: {
+              width: 0,
+              height: 10,
+            },
+            shadowOpacity: 0.25,
+            elevation: 10,
+            borderRadius: 5,
           }}>
             <HeaderTitle title="Modal Title" />
-            <Text>Cuerpo del modal</Text>
-            <Button
-              title="Cerrar"
-              onPress={() => setIsVisible(false)}
-            />
+            <Text style={{
+              fontSize: 16,
+              fontWeight: '300',
+              marginBottom: 25,
+              }}>
+                Cuerpo del modal
+              </Text>
+              <Button
+                title="Cerrar"
+                onPress={() => setIsVisible(false)}
+              />
           </View>
 
         </View>

@@ -6,7 +6,7 @@ import { Navigation } from './src/navigation/Navigation';
 const customTheme: Theme = {
   dark: true,
   colors: {
-    ...DarkTheme.colors,
+    ...DefaultTheme.colors,
     // primary: 'rgb(255, 45, 85)',
     // background: 'black',
     // card: string;

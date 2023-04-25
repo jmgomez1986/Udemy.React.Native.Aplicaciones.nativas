@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { HomeScreen } from '../screens/HomeScreen';
 import { Animation101Screen } from '../screens/Animation101Screen';
@@ -13,6 +13,7 @@ import { InfiniteScrollScreen } from '../screens/InfiniteScrollScreen';
 import { SlidesScreen } from '../screens/SlidesScreen';
 import { ChangeThemeScreen } from '../screens/ChangeThemeScreen';
 import { NavigationContainer } from '@react-navigation/native';
+import { ThemeContext } from '../context/theme/ThemeContext';
 
 export type RootStackParams = {
   HomeScreen: undefined;
@@ -32,8 +33,13 @@ export type RootStackParams = {
 const Stack = createStackNavigator<RootStackParams>();
 
 export const Navigation = () => {
+
+  const { theme } = useContext(ThemeContext);
+
   return (
-    <NavigationContainer>
+    <NavigationContainer
+      theme={ theme }
+    >
       <Stack.Navigator
         screenOptions={{
           headerShown: false,

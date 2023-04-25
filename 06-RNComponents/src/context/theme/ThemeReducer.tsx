@@ -9,19 +9,19 @@ export interface ThemeState extends Theme {
   dividerColor: string;
 }
 
-const lightTheme: ThemeState = {
+export const lightTheme: ThemeState = {
   currentTheme: 'light',
   dividerColor: 'rgba(0,0,0,0.7',
   dark: false,
   colors: {
     primary: 'red',
-    background: 'blue',
+    background: 'white',
     card: 'green',
     text: 'pink',
     border: 'orange',
     notification: 'teal',
-  }
-}
+  },
+};
 
 export const themeReducer = (state: ThemeState, action: ThemeAction): ThemeState => {
   switch (action.type) {

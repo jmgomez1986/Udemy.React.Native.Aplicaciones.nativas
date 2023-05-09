@@ -49,7 +49,7 @@ export const menuItems: MenuItem[] = [
   {
     name: 'Slides',
     icon: 'flower-outline',
-    component: 'Slide',
+    component: 'SlidesScreen',
   },
   {
     name: 'Change Theme',

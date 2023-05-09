@@ -9,7 +9,7 @@ import { ThemeContext } from '../context/theme/ThemeContext';
 
 export const TextInputScreen = () => {
 
-  const { theme: { colors } } = useContext(ThemeContext);
+  const { theme: { colors, dividerColor } } = useContext(ThemeContext);
   const { form, isSubscribed, onChange } = useForm({
     name: '',
     email: '',
@@ -25,16 +25,26 @@ export const TextInputScreen = () => {
         <HeaderTitle title="Text Input" />
 
         <TextInput
-          style={{...stylesTextInput.inputStyle, color: colors.text}}
+          style={{
+            ...stylesTextInput.inputStyle,
+            borderColor: colors.text,
+            color: colors.text,
+          }}
           placeholder="Ingrese su nombre"
+          placeholderTextColor={dividerColor}
           autoCorrect={false}
           autoCapitalize="words"
           onChangeText={(value) => onChange(value, 'name')}
         />
 
         <TextInput
-          style={{...stylesTextInput.inputStyle, color: colors.text}}
+          style={{
+            ...stylesTextInput.inputStyle,
+            borderColor: colors.text,
+            color: colors.text,
+          }}
           placeholder="Ingrese su email"
+          placeholderTextColor={dividerColor}
           autoCorrect={false}
           autoCapitalize="none"
           onChangeText={(value) => onChange(value, 'email')}
@@ -53,8 +63,13 @@ export const TextInputScreen = () => {
         </View>
 
         <TextInput
-          style={{...stylesTextInput.inputStyle, color: colors.text}}
+          style={{
+            ...stylesTextInput.inputStyle,
+            borderColor: colors.text,
+            color: colors.text,
+          }}
           placeholder="Ingrese su teléfono"
+          placeholderTextColor={dividerColor}
           onChangeText={(value) => onChange(value, 'phone')}
           keyboardType="phone-pad"
         />
@@ -71,7 +86,7 @@ export const TextInputScreen = () => {
 const stylesTextInput = StyleSheet.create({
   inputStyle: {
     height: 40,
-    borderColor: 'rgba(0,0,0,0.3)',
+    
     borderRadius: 10,
     borderWidth: 1,
     paddingHorizontal: 10,

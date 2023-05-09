@@ -35,7 +35,7 @@ export const SectionListScreen = () => {
       <SectionList
         sections={casas}
         keyExtractor={(item, index) => item + index}
-        renderItem={({item}) => <Text>{item}</Text>}
+        renderItem={({item}) => <Text style={{color: colors.text}}>{item}</Text>}
         ListHeaderComponent={() => <HeaderTitle title="Section List" />}
         ListFooterComponent={() => (
           <View style={{marginBottom: 70}}>

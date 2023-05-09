@@ -45,9 +45,9 @@ const items: Slide[] = [
 ];
 
 export const SlidesScreen = ({navigation}: Props) => {
+  const { theme: { colors } } = useContext(ThemeContext);
   const [activeIndex, setActiveIndex] = useState(0);
   // const [isVisible, setIsVisible] = useState(false);
-  const { theme: { colors } } = useContext(ThemeContext);
   const isVisible = useRef(false);
   const {opacity, fadeIn} = useAnimation();
   const renderItem = (item: Slide) => {
@@ -55,7 +55,7 @@ export const SlidesScreen = ({navigation}: Props) => {
       <View
         style={{
           flex: 1,
-          backgroundColor: 'white',
+          backgroundColor: colors.background,
           borderRadius: 5,
           padding: 40,
           justifyContent: 'center',
@@ -69,8 +69,8 @@ export const SlidesScreen = ({navigation}: Props) => {
           }}
         />
 
-        <Text style={{...styles.title, color: colors.primary}}>{item.title}</Text>
-        <Text style={styles.subTitle}>{item.desc}</Text>
+        <Text style={{...styles.title, marginBottom: 10, color: colors.primary}}>{item.title}</Text>
+        <Text style={{...styles.subTitle, color: colors.text}}>{item.desc}</Text>
       </View>
     );
   };
@@ -111,7 +111,7 @@ export const SlidesScreen = ({navigation}: Props) => {
             width: 10,
             height: 10,
             borderRadius: 10,
-            backgroundColor: colors.background,
+            backgroundColor: colors.primary,
           }}
         />
 
@@ -119,7 +119,7 @@ export const SlidesScreen = ({navigation}: Props) => {
           isVisible && ( */}
             <Animated.View style={{opacity}}>
               <TouchableOpacity
-                style={styles.button}
+                style={{...styles.button, backgroundColor: colors.primary}}
                 activeOpacity={0.8}
                 onPress={() => {
                   if (isVisible.current) {
@@ -127,12 +127,13 @@ export const SlidesScreen = ({navigation}: Props) => {
                   }
                 }}>
                 <Icon
+                  style={{marginTop: 5}}
                   name="chevron-forward-outline"
-                  color={colors.primary}
+                  color="white"
                   size={30} />
                 <Text
-                  style={styles.buttonText}>
-                    Entrar
+                  style={{...styles.buttonText}}>
+                  Entrar
                 </Text>
               </TouchableOpacity>
             </Animated.View>
@@ -147,17 +148,16 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 30,
     fontWeight: 'bold',
-    // color: colors.primary,
   },
   subTitle: {
     fontSize: 16,
   },
   button: {
-    flexDirection: 'row',
+    flexDirection: 'row-reverse',
     justifyContent: 'center',
+    paddingHorizontal: 25,
     alignItems: 'center',
-    backgroundColor: '#5856D6',
-    width: 150,
+    width: 130,
     height: 50,
     borderRadius: 20,
   },

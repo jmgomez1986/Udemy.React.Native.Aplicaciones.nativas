@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
 import { styles } from '../theme/appTheme';
 import { HeaderTitle } from '../components/HeaderTitle';
 import { ScrollView } from 'react-native-gesture-handler';
 import { useForm } from '../hooks/useForm';
 import { CustomSwitch } from '../components/CustomSwitch';
+import { ThemeContext } from '../context/theme/ThemeContext';
 
 export const TextInputScreen = () => {
 
+  const { theme: { colors } } = useContext(ThemeContext);
   const { form, isSubscribed, onChange } = useForm({
     name: '',
     email: '',
@@ -23,7 +25,7 @@ export const TextInputScreen = () => {
         <HeaderTitle title="Text Input" />
 
         <TextInput
-          style={stylesTextInput.inputStyle}
+          style={{...stylesTextInput.inputStyle, color: colors.text}}
           placeholder="Ingrese su nombre"
           autoCorrect={false}
           autoCapitalize="words"
@@ -31,7 +33,7 @@ export const TextInputScreen = () => {
         />
 
         <TextInput
-          style={stylesTextInput.inputStyle}
+          style={{...stylesTextInput.inputStyle, color: colors.text}}
           placeholder="Ingrese su email"
           autoCorrect={false}
           autoCapitalize="none"
@@ -39,13 +41,19 @@ export const TextInputScreen = () => {
           keyboardType="email-address"
         />
 
-        <View style={styles.swithRow}>
-          <Text style={styles.swithText}>Suscribirse</Text>
+        <View style={styles.switchRow}>
+          <Text style={{
+            ...styles.switchText,
+            color: colors.text,
+            }}
+          >
+            Suscribirse
+          </Text>
           <CustomSwitch isOn={ isSubscribed } onChange={(value) => onChange(value, 'isSubscribed')}/>
         </View>
 
         <TextInput
-          style={stylesTextInput.inputStyle}
+          style={{...stylesTextInput.inputStyle, color: colors.text}}
           placeholder="Ingrese su teléfono"
           onChangeText={(value) => onChange(value, 'phone')}
           keyboardType="phone-pad"
@@ -68,5 +76,6 @@ const stylesTextInput = StyleSheet.create({
     borderWidth: 1,
     paddingHorizontal: 10,
     marginVertical: 10,
+    fontSize: 16,
   },
 });

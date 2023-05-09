@@ -10,9 +10,7 @@ interface Props {
 
 export const HeaderTitle = ({ title }: Props) => {
   const { top } = useSafeAreaInsets();
-  const {
-    theme: { colors },
-  } = useContext(ThemeContext);
+  const { theme: { colors } } = useContext(ThemeContext);
 
   return (
     <View style={{ marginTop: top + 20, marginBottom: 20 }}>

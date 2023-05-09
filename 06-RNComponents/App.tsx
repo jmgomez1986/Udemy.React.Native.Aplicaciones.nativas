@@ -3,19 +3,6 @@ import React from 'react';
 import { Navigation } from './src/navigation/Navigation';
 import { ThemeProvider } from './src/context/theme/ThemeContext';
 
-// const customTheme: Theme = {
-//   dark: true,
-//   colors: {
-//     ...DefaultTheme.colors,
-//     // primary: 'rgb(255, 45, 85)',
-//     // background: 'black',
-//     // card: string;
-//     // text: string;
-//     // border: string;
-//     // notification: string;
-//   },
-// };
-
 const App = () => {
   return (
     <AppState>

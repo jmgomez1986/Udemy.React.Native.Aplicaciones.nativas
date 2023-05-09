@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Text, View } from 'react-native';
 import { HeaderTitle } from '../components/HeaderTitle';
 import { CustomSwitch } from '../components/CustomSwitch';
 import { styles } from '../theme/appTheme';
+import { ThemeContext } from '../context/theme/ThemeContext';
 
 interface State {
   isActive: boolean,
@@ -11,6 +12,8 @@ interface State {
 }
 
 export const SwitchScreen = () => {
+
+  const { theme: { colors } } = useContext(ThemeContext);
 
   const [state, setState] = useState<State>({
     isActive: true,
@@ -32,22 +35,44 @@ export const SwitchScreen = () => {
 
       <HeaderTitle title="Switches" />
 
-      <View style={styles.swithRow}>
-        <Text style={styles.swithText}>isActive</Text>
+      <View style={styles.switchRow}>
+        <Text style={{
+          ...styles.switchText,
+          color: colors.text,
+          }}
+        >
+          isActive
+        </Text>
         <CustomSwitch isOn={ isActive } onChange={(value) => onChange(value, 'isActive')}/>
       </View>
 
-      <View style={styles.swithRow}>
-        <Text style={styles.swithText}>isHungry</Text>
+      <View style={styles.switchRow}>
+        <Text style={{
+          ...styles.switchText,
+          color: colors.text,
+          }}
+        >
+          isHungry
+        </Text>
         <CustomSwitch isOn={ isHungry } onChange={(value) => onChange(value, 'isHungry')}/>
       </View>
 
-      <View style={styles.swithRow}>
-        <Text style={styles.swithText}>isHappy</Text>
+      <View style={styles.switchRow}>
+        <Text style={{
+          ...styles.switchText,
+          color: colors.text,
+          }}
+        >
+          isHappy
+        </Text>
         <CustomSwitch isOn={ isHappy } onChange={(value) => onChange(value, 'isHappy')}/>
       </View>
 
-      <Text style={styles.swithText}>
+      <Text style={{
+        ...styles.switchText,
+        color: colors.text,
+        }}
+      >
         { JSON.stringify(state, null, 5) }
       </Text>
 

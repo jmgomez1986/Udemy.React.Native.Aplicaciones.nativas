@@ -14,7 +14,7 @@ export const menuItems: MenuItem[] = [
   {
     name: 'Switches',
     icon: 'toggle-outline',
-    component: 'SwithchScreen',
+    component: 'SwitchScreen',
   },
   {
     name: 'Alerts',
@@ -39,12 +39,12 @@ export const menuItems: MenuItem[] = [
   {
     name: 'Modal',
     icon: 'copy-outline',
-    component: 'Moda',
+    component: 'ModalScreen',
   },
   {
     name: 'Infinite Scroll',
     icon: 'download-outline',
-    component: 'InfiniteScrol',
+    component: 'InfiniteScrollScreen',
   },
   {
     name: 'Slides',

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useContext } from 'react';
 import {
   Animated,
   Dimensions,
@@ -14,6 +14,7 @@ import Carousel, { Pagination } from 'react-native-snap-carousel';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { useAnimation } from '../hooks/useAnimation';
 import { StackScreenProps } from '@react-navigation/stack';
+import { ThemeContext } from '../context/theme/ThemeContext';
 
 const { width: screenWidth } = Dimensions.get('window');
 
@@ -46,6 +47,7 @@ const items: Slide[] = [
 export const SlidesScreen = ({navigation}: Props) => {
   const [activeIndex, setActiveIndex] = useState(0);
   // const [isVisible, setIsVisible] = useState(false);
+  const { theme: { colors } } = useContext(ThemeContext);
   const isVisible = useRef(false);
   const {opacity, fadeIn} = useAnimation();
   const renderItem = (item: Slide) => {
@@ -67,7 +69,7 @@ export const SlidesScreen = ({navigation}: Props) => {
           }}
         />
 
-        <Text style={styles.title}>{item.title}</Text>
+        <Text style={{...styles.title, color: colors.primary}}>{item.title}</Text>
         <Text style={styles.subTitle}>{item.desc}</Text>
       </View>
     );
@@ -109,7 +111,7 @@ export const SlidesScreen = ({navigation}: Props) => {
             width: 10,
             height: 10,
             borderRadius: 10,
-            backgroundColor: '#5856D6',
+            backgroundColor: colors.background,
           }}
         />
 
@@ -126,7 +128,7 @@ export const SlidesScreen = ({navigation}: Props) => {
                 }}>
                 <Icon
                   name="chevron-forward-outline"
-                  color="white"
+                  color={colors.primary}
                   size={30} />
                 <Text
                   style={styles.buttonText}>
@@ -145,7 +147,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 30,
     fontWeight: 'bold',
-    color: '#5856D6',
+    // color: colors.primary,
   },
   subTitle: {
     fontSize: 16,

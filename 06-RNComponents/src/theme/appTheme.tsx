@@ -8,13 +8,13 @@ export const styles = StyleSheet.create({
     fontSize: 35,
     fontWeight: 'bold',
   },
-  swithRow: {
+  switchRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     marginVertical: 20,
   },
-  swithText: {
+  switchText: {
     fontSize: 25,
   },
 });

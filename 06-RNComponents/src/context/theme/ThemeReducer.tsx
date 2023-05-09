@@ -1,5 +1,4 @@
 import { Theme } from '@react-navigation/native';
-import React from 'react';
 
 type ThemeAction = { type: 'set_light_theme' } | { type: 'set_dark_theme' };
 export interface ThemeState extends Theme {
@@ -9,28 +8,28 @@ export interface ThemeState extends Theme {
 
 export const lightTheme: ThemeState = {
   currentTheme: 'light',
-  dividerColor: 'rgba(0,0,0,0.7',
+  dividerColor: 'rgba(0,0,0,0.6)',
   dark: false,
   colors: {
     primary: '#084F6A',
     background: 'white',
-    card: 'green',
+    card: 'white',
     text: 'black',
-    border: 'orange',
+    border: 'black',
     notification: 'teal',
   },
 };
 
 export const darkTheme: ThemeState = {
   currentTheme: 'dark',
-  dividerColor: 'rgba(0,0,0,0.7',
+  dividerColor: 'rgba(255,255,255,0.6)',
   dark: true,
   colors: {
     primary: '#75CEDB',
     background: 'black',
-    card: 'green',
+    card: 'black',
     text: 'white',
-    border: 'orange',
+    border: 'black',
     notification: 'teal',
   },
 };

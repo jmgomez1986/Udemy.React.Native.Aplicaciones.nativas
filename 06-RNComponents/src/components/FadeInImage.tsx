@@ -1,7 +1,6 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useAnimation } from '../hooks/useAnimation';
 import { ActivityIndicator, Animated, ImageStyle, StyleProp, View } from 'react-native';
-import { useState } from 'react';
 import { ThemeContext } from '../context/theme/ThemeContext';
 
 interface Props {

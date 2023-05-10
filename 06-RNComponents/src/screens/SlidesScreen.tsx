@@ -24,7 +24,7 @@ interface Slide {
   img: ImageSourcePropType;
 }
 
-interface Props extends StackScreenProps<any, any> {};
+interface Props extends StackScreenProps<any, any> {}
 
 const items: Slide[] = [
   {

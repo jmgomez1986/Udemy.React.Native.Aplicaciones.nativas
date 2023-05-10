@@ -86,7 +86,6 @@ export const TextInputScreen = () => {
 const stylesTextInput = StyleSheet.create({
   inputStyle: {
     height: 40,
-    
     borderRadius: 10,
     borderWidth: 1,
     paddingHorizontal: 10,

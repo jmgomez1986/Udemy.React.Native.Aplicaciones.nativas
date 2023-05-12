@@ -1,16 +1,17 @@
 import { StackScreenProps } from '@react-navigation/stack';
 import React from 'react';
-import { Image, Text } from 'react-native';
+import { ActivityIndicator, Image, Text } from 'react-native';
 import { styles } from '../theme/appTheme';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { usePokemonPaginated } from '../hooks/usePokemonPaginated';
+import { FlatList } from 'react-native-gesture-handler';
 
 interface Props extends StackScreenProps<any, any> {}
 
 export const HomeScreen = ({navigation}: Props) => {
 
   const { top } = useSafeAreaInsets();
-  const { simplePokemonList } = usePokemonPaginated();
+  const { simplePokemonList, loadPokemons } = usePokemonPaginated();
   console.log(simplePokemonList);
 
   return (
@@ -21,7 +22,34 @@ export const HomeScreen = ({navigation}: Props) => {
         style={styles.pokebolaBG}
       />
 
-      <Text style={{
+      <FlatList
+        data={ simplePokemonList }
+        keyExtractor={ (pokemon) => pokemon.id }
+        showsVerticalScrollIndicator={false}
+        renderItem={ ({item}) => (
+          <Image
+            source={{uri: item.picture}}
+            style={{
+              width: 100,
+              height: 100,
+            }}
+          />
+        ) }
+
+        // Infinite Scroll
+        onEndReached={ loadPokemons }
+        onEndReachedThreshold={ 0.4 }
+
+        ListFooterComponent={(
+          <ActivityIndicator
+            style={{height: 100}}
+            size={20}
+            color="grey"
+          />
+        )}
+      />
+
+      {/* <Text style={{
           ...styles.title,
           ...styles.globalMargin,
           top: top + 20,
@@ -29,7 +57,7 @@ export const HomeScreen = ({navigation}: Props) => {
         }}
       >
         Pokedex
-      </Text>
+      </Text> */}
     </>
   );
 };
